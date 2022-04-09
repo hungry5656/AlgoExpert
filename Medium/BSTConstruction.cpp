@@ -24,7 +24,7 @@ public:
         BST *currNode = this;
         BST *nextNode = this;
         bool LOrR = 0;
-        while(nextNode != nullptr){
+        while(currNode != nullptr){
             int currentV = currNode -> value;
             if (val >= currentV){
                 currNode = nextNode;
@@ -61,6 +61,40 @@ public:
     BST &remove(int val) {
         // Write your code here.
         // Do not edit the return statement of this method.
+        BST *currNode = this;
+        BST *nextNode = this;
+        bool LOrR = 0;
+        if (this -> left == nullptr && this -> right == nullptr) return *this;
+        while(nextNode != nullptr){
+            int currentV = nextNode -> value;
+            if (val == currentV){
+                BST *currNode2 = nextNode;
+                BST *nextNode2 = nextNode -> right;
+                if (nextNode2 != nullptr){
+                    while (nextNode2 -> left != nullptr){
+                    currNode2 = nextNode2;
+                    nextNode2 = nextNode2 -> left;
+                    }
+                    currNode2 -> left = nullptr;
+                } else {
+                    nextNode2 = currNode2;
+                }
+                if (LOrR)
+                    currNode -> right = nextNode2 -> left;
+                else
+                    currNode -> left = nextNode2 -> left;
+                delete nextNode;
+                return *this;
+            }else if (val > currentV){
+                currNode = nextNode;
+                nextNode = nextNode -> right;
+                bool LOrR = 1;
+            } else{
+                currNode = nextNode;
+                nextNode = nextNode -> left;
+                bool LOrR = 0;
+            }
+        }
         
         return *this;
     }
