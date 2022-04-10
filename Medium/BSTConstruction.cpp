@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 // Do not edit the class below except for
@@ -17,6 +18,23 @@ public:
         right = nullptr;
     }
 
+    // BST &insert(int val) {
+    //     // Write your code here.
+    //     // Do not edit the return statement of this method.
+    //     if (val < value){
+    //         if (left == nullptr)
+    //             left = new BST(val);
+    //         else 
+    //             left -> insert(val);
+    //     } else {
+    //         if (right == nullptr)
+    //             right = new BST(val);
+    //         else
+    //             right -> insert(val);
+    //     }
+    //     return *this;
+    // }
+
     BST &insert(int val) {
         // Write your code here.
         // Do not edit the return statement of this method.
@@ -24,16 +42,16 @@ public:
         BST *currNode = this;
         BST *nextNode = this;
         bool LOrR = 0;
-        while(currNode != nullptr){
-            int currentV = currNode -> value;
+        while(nextNode != nullptr){
+            int currentV = nextNode -> value;
             if (val >= currentV){
                 currNode = nextNode;
                 nextNode = nextNode -> right;
-                bool LOrR = 1;
+                LOrR = 1;
             } else {
                 currNode = nextNode;
                 nextNode = nextNode -> left;
-                bool LOrR = 0;
+                LOrR = 0;
             }
         }
         if (LOrR)
@@ -75,9 +93,14 @@ public:
                     currNode2 = nextNode2;
                     nextNode2 = nextNode2 -> left;
                     }
-                    currNode2 -> left = nullptr;
+                    if (nextNode != this) currNode2 -> left = nullptr;
                 } else {
                     nextNode2 = currNode2;
+                }
+                if (nextNode == this){
+                    cout << "root delete" << endl;
+                    delete this;
+                    return *nextNode2;
                 }
                 if (LOrR)
                     currNode -> right = nextNode2 -> left;
@@ -88,11 +111,11 @@ public:
             }else if (val > currentV){
                 currNode = nextNode;
                 nextNode = nextNode -> right;
-                bool LOrR = 1;
+                LOrR = 1;
             } else{
                 currNode = nextNode;
                 nextNode = nextNode -> left;
-                bool LOrR = 0;
+                LOrR = 0;
             }
         }
         
