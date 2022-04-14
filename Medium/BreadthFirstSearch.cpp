@@ -14,8 +14,14 @@ public:
     Node(string str) { name = str; }
 
     vector<string> breadthFirstSearch(vector<string> *array) {
-        // Write your code here.
-        return {};
+        // Need to be fixed
+        for (int i = 0; i < children.size(); ++i){
+            array -> push_back(children[i]->name);
+        }
+        for (int i = 0; i < children.size(); ++i){
+            children[i] -> breadthFirstSearch(array);
+        }
+        return *array;
     }
 
     Node *addChild(string name) {
