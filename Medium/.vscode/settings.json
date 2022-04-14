@@ -5,6 +5,7 @@
         "functional": "cpp",
         "array": "cpp",
         "new": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "string_view": "cpp"
     }
 }
