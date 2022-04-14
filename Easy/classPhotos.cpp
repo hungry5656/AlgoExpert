@@ -7,17 +7,11 @@ bool classPhotos(vector<int> redShirtHeights, vector<int> blueShirtHeights) {
     sort (blueShirtHeights.begin(), blueShirtHeights.end());
     int compareNum = redShirtHeights[0] - blueShirtHeights[0];
     if (compareNum == 0) return false;
-    if (compareNum > 0){
-        for (int i = 0; i < redShirtHeights.size(); ++i){
-            if (redShirtHeights[i] <= blueShirtHeights[i]){
-                return false;
-            }
-        }
-    } else {
-        for (int i = 0; i < redShirtHeights.size(); ++i){
-            if (redShirtHeights[i] >= blueShirtHeights[i]){
-                return false;
-            }
+    for (int i = 0; i < redShirtHeights.size(); ++i){
+        if(compareNum > 0){
+            if (redShirtHeights[i] <= blueShirtHeights[i]) return false;
+        } else {
+            if (redShirtHeights[i] >= blueShirtHeights[i]) return false;
         }
     }
     return true;
