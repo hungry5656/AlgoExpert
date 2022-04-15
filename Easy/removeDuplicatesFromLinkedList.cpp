@@ -1,6 +1,5 @@
 using namespace std;
 
-// This is an input struct. Do not edit.
 class LinkedList {
 public:
     int value;
@@ -10,6 +9,13 @@ public:
 };
 
 LinkedList *removeDuplicatesFromLinkedList(LinkedList *linkedList) {
-    
-    return nullptr;
+    if (linkedList == nullptr) return linkedList;
+    if (linkedList -> next == nullptr) return linkedList;
+    removeDuplicatesFromLinkedList(linkedList -> next);
+    if (linkedList -> next ->value == linkedList -> value){
+        LinkedList *linkedListNext = linkedList -> next;
+        linkedList -> next = linkedList -> next -> next;
+        delete linkedListNext;
+    }
+    return linkedList;
 }
