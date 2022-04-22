@@ -1,5 +1,7 @@
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <queue>
 using namespace std;
 
 // Do not edit the class below except
@@ -15,11 +17,17 @@ public:
 
     vector<string> breadthFirstSearch(vector<string> *array) {
         // Need to be fixed
-        for (int i = 0; i < children.size(); ++i){
-            array -> push_back(children[i]->name);
-        }
-        for (int i = 0; i < children.size(); ++i){
-            children[i] -> breadthFirstSearch(array);
+        static queue<Node *> waitlist;
+        waitlist.push(this);
+        while (!waitlist.empty()){
+            Node *currNode = waitlist.front();
+            waitlist.pop();
+            if (find(array -> begin(), array -> end(), currNode -> name) == array -> end()){
+                array -> push_back(currNode -> name);
+            }
+            for (int i = 0; i < currNode -> children.size(); ++i){
+                waitlist.push(currNode -> children[i]);
+            }
         }
         return *array;
     }
