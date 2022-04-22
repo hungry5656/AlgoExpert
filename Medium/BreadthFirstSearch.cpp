@@ -16,7 +16,6 @@ public:
     Node(string str) { name = str; }
 
     vector<string> breadthFirstSearch(vector<string> *array) {
-        // Need to be fixed
         static queue<Node *> waitlist;
         waitlist.push(this);
         while (!waitlist.empty()){
