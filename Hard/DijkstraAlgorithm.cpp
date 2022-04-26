@@ -6,68 +6,47 @@
 using namespace std;
 
 vector<int> dijkstrasAlgorithm(int start, vector<vector<vector<int>>> edges) {
-    /* Efficient Version
+    /* Not Optimized Version
     */
     int NumEdges = edges.size();
-    vector<bool> SVec(NumEdges);
     vector<int> retVal(NumEdges);
     vector<pair<int, int>> sPQ = {};
-    vector<vector<vector<int>>> edgesRev(NumEdges);
     for (int i = 0; i < NumEdges; ++i){
-        SVec[i] = 0;
         retVal[i] = INT_MAX;
-        for (int j = 0; j < edges[i].size(); ++j){
-            edgesRev[edges[i][j][0]].push_back({i, edges[i][j][1]});
-        }
-    }
-
-    for (int i = 0; i < NumEdges; ++i){
-        cout << "[";
-        for (int j = 0; j < edgesRev[i].size(); ++j){
-            cout << "[" << edgesRev[i][j][0] << ", " << edgesRev[i][j][1] << "]";
-        }
-        cout << "]," << endl;
     }
 
     // Initialize
     retVal[start] = 0;
-    SVec[start] = 1;
     for (int i = 0; i < NumEdges; ++i){
         sPQ.push_back(make_pair(i, retVal[i]));
-        // cout << i <<", " << retVal[i] << endl;
     }
     while(!sPQ.empty()){
         pair<int, int> currV = {0, INT_MAX};
         int cIndex;
         for (int i = 0; i < sPQ.size(); ++i){
             if (sPQ[i].second < currV.second){
-                cout << sPQ[i].second << "  Bruh\n";
                 currV.second = sPQ[i].second;
-                currV.first = i;
+                currV.first = sPQ[i].first;
                 cIndex = i;
             }
         }
-        cout << currV.first <<", " << currV.second << endl;
         sPQ.erase(sPQ.begin() + cIndex);
-        cout << "should start "  << edgesRev[currV.first].size() << endl;
-        for (int i = 0; i < edgesRev[currV.first].size(); ++i){
+        for (int i = 0; i < edges[currV.first].size(); ++i){
             cout << i << endl;
-            int curAdjV = edgesRev[currV.first][i][0];
-            int currEdge = edgesRev[currV.first][i][1] + retVal[currV.first];
+            int curAdjV = edges[currV.first][i][0];
+            int currEdge = edges[currV.first][i][1] + retVal[currV.first];
             if (currEdge < retVal[curAdjV]){
-                cout << "Bruh\n";
                 retVal[curAdjV] = currEdge;
                 for (int j = 0; j < sPQ.size(); ++j){
-                    // cout << "Bruh\n";
                     if (sPQ[j].first == curAdjV){
                         sPQ[j].second = currEdge;
                     }
                 }
             }
         }
-        // get the smallest edges
-        
-
+    }
+    for (int i = 0; i < NumEdges; ++i){
+        if (retVal[i] == INT_MAX) retVal[i] = -1;
     }
     return retVal;
 }
