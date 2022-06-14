@@ -28,5 +28,19 @@ vector<char> longestCommonSubsequence(string str1, string str2) {
         }
         // cout << "]" << endl;
     }
-    return {to_string(opt[str1.length()][str2.length()])[0]};
+    // Backtracing
+    vector<char> retStr;
+    int i = str1.length(), j = str2.length();
+    while (i != 0 && j != 0){
+        if (opt[i][j] == opt[i][j - 1]){
+            --j;
+        } else if (opt[i][j] == opt[i - 1][j]){
+            --i;
+        } else {
+            retStr.insert(retStr.begin(), str1[i - 1]);
+            --i;
+            --j;
+        }
+    }
+    return retStr;
 }
