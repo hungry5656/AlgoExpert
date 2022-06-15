@@ -6,6 +6,7 @@ vector<vector<int>> knapsackProblem(vector<vector<int>> items, int capacity) {
     // opt[i][j] = {0 if i = 0
     //              opt[i - 1][j] if wi > j
     //              MAX(opt[i - 1][j], vi + opt[i - 1][j - wi]) else}
+    // Time Complexity: O(nW); Space Complexity: O(nW);
     vector<vector<int>> opt(items.size() + 1, vector<int>(capacity + 1));
     for (int i = 0; i <= items.size(); ++i){
         for (int j = 0; j <= capacity; ++j){
