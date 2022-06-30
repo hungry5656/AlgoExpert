@@ -10,5 +10,8 @@ vector<vector<int>> solveSudoku(vector<vector<int>> board) {
 
 void recursiveSolve(vector<vector<int>> &board, int i, int j){
     // backtracking
-
+    if (i == 9 and j == 9)
+        return;
+    
+    
 }
