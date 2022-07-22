@@ -13,5 +13,10 @@ public:
 
 bool heightBalancedBinaryTree(BinaryTree *tree) {
     
+    if (/* condition */)
+    {
+        /* code */
+    }
+    
     return false;
 }
