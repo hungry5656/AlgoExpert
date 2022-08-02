@@ -22,6 +22,6 @@ vector<vector<int>> removeIslands(vector<vector<int>> matrix) {
 int checkNeighbor(int i, int j, vector<vector<int>> &matrix, vector<vector<int>> &checklist){
     int rowN = matrix.size(), colN = matrix[0].size();
     if (i - 1 >= 0){
-        
+        if (checklist[i - 1][j] != )
     }
 }
