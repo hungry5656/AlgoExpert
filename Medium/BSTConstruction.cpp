@@ -36,8 +36,6 @@ public:
     // }
 
     BST &insert(int val) {
-        // Write your code here.
-        // Do not edit the return statement of this method.
         BST *NewNode = new BST(val);
         BST *currNode = this;
         BST *nextNode = this;
@@ -62,7 +60,6 @@ public:
     }
 
     bool contains(int val) {
-        // Write your code here.
         BST *currNode = this;
         while(currNode != nullptr){
             int currentV = currNode -> value;
@@ -77,7 +74,6 @@ public:
     }
 
     BST &remove(int val) {
-        // Write your code here.
         // Do not edit the return statement of this method.
         BST *currNode = this;
         BST *nextNode = this;
@@ -86,27 +82,28 @@ public:
         while(nextNode != nullptr){
             int currentV = nextNode -> value;
             if (val == currentV){
-                BST *currNode2 = nextNode;
-                BST *nextNode2 = nextNode -> right;
-                if (nextNode2 != nullptr){
-                    while (nextNode2 -> left != nullptr){
-                    currNode2 = nextNode2;
-                    nextNode2 = nextNode2 -> left;
-                    }
-                    if (nextNode != this) currNode2 -> left = nullptr;
-                } else {
-                    nextNode2 = currNode2;
-                }
-                if (nextNode == this){
-                    cout << "root delete" << endl;
-                    delete this;
-                    return *nextNode2;
-                }
-                if (LOrR)
-                    currNode -> right = nextNode2 -> left;
-                else
-                    currNode -> left = nextNode2 -> left;
-                delete nextNode;
+                // BST *currNode2 = nextNode;
+                // BST *nextNode2 = nextNode -> right;
+                // if (nextNode2 != nullptr){
+                //     while (nextNode2 -> left != nullptr){
+                //     currNode2 = nextNode2;
+                //     nextNode2 = nextNode2 -> left;
+                //     }
+                //     if (nextNode != this) currNode2 -> left = nullptr;
+                // } else {
+                //     nextNode2 = currNode2;
+                // }
+                // if (nextNode == this){
+                //     cout << "root delete" << endl;
+                //     delete this;
+                //     return *nextNode2;
+                // }
+                // if (LOrR)
+                //     currNode -> right = nextNode2 -> left;
+                // else
+                //     currNode -> left = nextNode2 -> left;
+                // delete nextNode;
+                changeSubRoot();
                 return *this;
             }else if (val > currentV){
                 currNode = nextNode;
@@ -120,5 +117,16 @@ public:
         }
         
         return *this;
+    }
+
+    void changeSubRoot(BST *root, BST *currNode) {
+        BST *currN = currNode;
+        BST *nextN = currNode -> right;
+        if (nextN == nullptr){
+            return currN -> left;
+        }
+        while (nextN != nullptr){
+
+        }
     }
 };
