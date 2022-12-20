@@ -103,7 +103,7 @@ public:
                 // else
                 //     currNode -> left = nextNode2 -> left;
                 // delete nextNode;
-                changeSubRoot();
+                changeSubRoot(this, currNode, nextNode);
                 return *this;
             }else if (val > currentV){
                 currNode = nextNode;
@@ -119,13 +119,27 @@ public:
         return *this;
     }
 
-    void changeSubRoot(BST *root, BST *currNode) {
-        BST *currN = currNode;
-        BST *nextN = currNode -> right;
+    void changeSubRoot(BST *root, BST *currNode, BST *nextNode) {
+        BST *currN = nextNode;
+        BST *nextN = nextNode -> right;
+        
         if (nextN == nullptr){
-            return currN -> left;
+            if (nextNode == root){
+                root = nextNode -> left;
+                return;
+            }
+            if (nextNode -> left == nullptr){
+                currNode -> right = nullptr;
+                return;
+            }
+            currNode -> right = nextNode -> left;
+            return;
         }
-        while (nextN != nullptr){
+        while (nextN -> left != nullptr){
+            currN = nextN;
+            nextN = nextN -> left;
+        }
+        if (nextNode == root){
 
         }
     }
