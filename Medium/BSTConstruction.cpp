@@ -140,7 +140,7 @@ public:
             nextN = nextN -> left;
         }
         if (nextNode == root){
-
+            currN -> 
         }
     }
 };

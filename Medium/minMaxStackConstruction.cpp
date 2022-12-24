@@ -35,5 +35,6 @@ public:
 private:
     vector<int> elements;
     int minVal, maxVal;
+    vector<vector<int>> minMaxStack;
 
 };
