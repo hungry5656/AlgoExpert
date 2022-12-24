@@ -9,32 +9,38 @@ public:
     }
 
     int pop() {
+        // int minVal, maxVal;
         int peekVal = peek();
         elements.pop_back();
+        minMaxVec.pop_back();
         return peekVal;
     }
 
     void push(int number) {
+        int minVal, maxVal;
         if (elements.size() == 0){
             minVal = number;
             maxVal = number;
+        } else {
+            minVal = getMin();
+            maxVal = getMax();
         }
         elements.push_back(number);
         minVal = min(minVal, number);
         maxVal = max(maxVal, number);
+        minMaxVec.push_back({minVal, maxVal});
     }
 
     int getMin() {
-        return minVal;
+        return minMaxVec.back()[0];
     }
 
     int getMax() {
-        return maxVal;
+        return minMaxVec.back()[1];
     }
 
 private:
     vector<int> elements;
-    int minVal, maxVal;
-    vector<vector<int>> minMaxStack;
+    vector<vector<int>> minMaxVec;
 
 };
