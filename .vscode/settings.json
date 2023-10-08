@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.pl": "prolog",
         "vector": "cpp",
         "algorithm": "cpp",
         "iostream": "cpp",
@@ -47,6 +48,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "any": "cpp",
-        "numbers": "cpp"
+        "numbers": "cpp",
+        "stack": "cpp"
     }
 }
