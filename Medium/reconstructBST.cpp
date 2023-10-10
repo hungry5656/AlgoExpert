@@ -13,15 +13,25 @@ class BST {
     BST(int value) { this->value = value; }
 };
 
+BST* recursiveConstruct(vector<int> &nodeVec, int start, int end);
+
 BST* reconstructBst(vector<int> preOrderTraversalValues) {
-    BST *root = new BST(preOrderTraversalValues[0]);
-    stack<BST*> currStk;
-    currStk.push(root);
-    for (int i = 1; i < preOrderTraversalValues.size(); ++i){
-        int currVal = preOrderTraversalValues[i];
-        BST *currBST = currStk.top();
-        
+    return recursiveConstruct(preOrderTraversalValues, 0, preOrderTraversalValues.size() - 1);
+}
+
+BST* recursiveConstruct(vector<int> &nodeVec, int start, int end){
+    if (start > end){
+        return nullptr;
     }
-    
-    return nullptr;
+    BST* node = new BST(nodeVec[start]);
+    int midItr = end + 1;
+    for (int i = start + 1; i <= end; ++i){
+        if (nodeVec[i] >= node->value){
+            midItr = i;
+            break;
+        }
+    }
+    node->left = recursiveConstruct(nodeVec, start + 1, midItr - 1);
+    node->right = recursiveConstruct(nodeVec, midItr, end);
+    return node;
 }
