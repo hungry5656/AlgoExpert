@@ -49,6 +49,7 @@
         "typeinfo": "cpp",
         "any": "cpp",
         "numbers": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "cinttypes": "cpp"
     }
 }
