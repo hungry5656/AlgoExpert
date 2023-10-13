@@ -10,11 +10,6 @@ int optimalFreelancing(vector<unordered_map<string, int>> jobs) {
     vector<bool> isUsed(7, false);
     auto sortFunc = [](unordered_map<string, int> a, unordered_map<string, int> b)
     {
-        // if (a["deadline"] != b["deadline"]){
-        //     return (a["deadline"] < b["deadline"]);
-        // } else {
-        //     return (a["payment"] > b["payment"]);
-        // }
         return a["payment"] > b["payment"];
     };
     sort(jobs.begin(), jobs.end(), sortFunc);
@@ -33,16 +28,6 @@ int optimalFreelancing(vector<unordered_map<string, int>> jobs) {
             currSum += itr["payment"];
             isUsed[latestDay - 1] = true;
         }
-
-        // if (daysUsed == 7){
-        //     break;
-        // }
-        // if (daysUsed >= itr["deadline"]){
-        //     continue;
-        // } else {
-        //     daysUsed++;
-        //     currSum += itr["payment"];
-        // }
     }
     return currSum;
 }
