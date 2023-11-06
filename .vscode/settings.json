@@ -50,6 +50,9 @@
         "any": "cpp",
         "numbers": "cpp",
         "stack": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "filesystem": "cpp",
+        "shared_mutex": "cpp",
+        "charconv": "cpp"
     }
 }
